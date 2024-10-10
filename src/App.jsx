@@ -1,19 +1,35 @@
 import './App.css'
-import conf from './conf/conf';
 import auth from './appwrite/auth';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { login, logout } from './store/authSlice';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
-  // const obj = {email: "shuklahet2704@gmail.com", password: "1234567", name: "Het"};
-  // const promise = auth.createAccountWithEmail(obj);
-  // promise.then(
-  //   console.log(auth.getCurrentUser())
-  // )
-  
-  return (
-    <>
-      <h1>Blog Application : {conf.appwriteBucketId}</h1>
-    </>
-  )
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.getCurrentUser()
+    .then((userData) => {
+      if(userData){
+        dispatch(login({userData}));
+      }else{
+        dispatch(logout());
+      }
+    })
+    .finally(() => setLoading(false));
+  }, []);
+
+  return !loading ? (
+    <div>
+      <Header />
+        <div className="text-5xl">Hello</div>
+      <Footer />
+    </div>
+  ) : null;
+
 }
 
 export default App

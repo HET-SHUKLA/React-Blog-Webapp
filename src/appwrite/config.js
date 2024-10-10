@@ -7,13 +7,15 @@ class Service{
     bucket;
 
     constructor(){
-        this.client.setProject(conf.appwriteProjectId);
+        this.client
+        .setEndpoint(conf.appwriteUrl)
+        .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
 
     //Post related services
-    
+
     async createPost({title, slug, content, featuredImage, status, userId}){
         try{
             return await this.databases.createDocument(
