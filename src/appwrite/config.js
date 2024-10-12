@@ -27,6 +27,7 @@ class Service{
                     content,
                     status,
                     userId,
+                    featuredImage,
                 }
             )
         }catch(e){
