@@ -52,7 +52,7 @@ const Signup = () => {
             </p>
             {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-            <form onSubmit={handleSubmit(create)}>
+            <form onSubmit={handleSubmit(signup)}>
                 <div className='space-y-5'>
                     <Input
                     label="Full Name: "
