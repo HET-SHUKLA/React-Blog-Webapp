@@ -17,9 +17,12 @@ const Login = () => {
         setError("");
         try {
             const session = await authService.loginWithEmail(data);
+            console.log(`aaa : ${data}`);
+            console.log(`bbb : ${session}`);
 
             if(session){
-                const userData = authService.getCurrentUser();
+                const userData = await authService.getCurrentUser();
+                console.log(`d: ${userData}`);
                 
                 if(userData){
                     dispatch(authLogin(userData));
