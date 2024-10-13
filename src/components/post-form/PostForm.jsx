@@ -19,7 +19,6 @@ const PostForm = ({post}) => {
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.auth.userData);
-    console.log(`b : ${userData.$id}`);
 
     const submit = async(data) => {
         if(post){

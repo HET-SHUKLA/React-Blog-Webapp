@@ -6,22 +6,34 @@ import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
 export default function Post() {
+    console.log(`hello`);
+    
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
 
-    const userData = useSelector((state) => state.auth.userData);
-
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
-
     useEffect(() => {
+        console.log(`hi`);
+        
         if (slug) {
-            appwriteService.getPost(slug).then((post) => {
-                if (post) setPost(post);
+            appwriteService.getPost(slug).then((fetchedPost) => {
+                if (fetchedPost) {setPost(fetchedPost);
+                    console.log(`postttt: ${fetchedPost.userId}`);
+                }
                 else navigate("/");
             });
         } else navigate("/");
     }, [slug, navigate]);
+
+    const userData = useSelector((state) => state.auth.userData);
+
+    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    console.log(`isAuth : ${isAuthor}`);
+    //console.log(`post : ${post.userId}`);
+    console.log(`isAuth : ${userData.$id}`);
+    
+
+    
 
     const deletePost = () => {
         appwriteService.deletePost(post.$id).then((status) => {

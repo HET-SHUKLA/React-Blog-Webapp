@@ -77,8 +77,8 @@ class Service{
             )
         }catch(e){
             console.log(`Appwrite Service :: Search Post :: ${e}`);
-            return false;
         }
+        return false;
     }
 
     async getAllPosts(queries = [Query.equal("status", "active")]){
