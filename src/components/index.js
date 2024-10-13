@@ -13,7 +13,7 @@ import Signup from './Signup';
 import PostForm from './post-form/PostForm'
 import AuthLayout from './AuthLayout';
 
-export default {
+export {
     Header, 
     Footer,
     Container,
