@@ -32,7 +32,7 @@ const Header = () => {
         },
         {
             name: 'Add Posts',
-            slug: '/add-posts',
+            slug: '/add-post',
             active: !authStatus
         },
     ];
