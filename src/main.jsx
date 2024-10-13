@@ -4,9 +4,9 @@ import App from './App.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
-import { createBrowserRouter } from 'react-router-dom'
-import Home from './pages/Home.jsx'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AuthLayout } from './components';
+import {Home, AddPost, AllPosts, EditPost, Login, Post, Signup} from './pages';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +20,58 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: (
-          <AuthLayout>
-
+          <AuthLayout authentication={false}>
+            <Login />
           </AuthLayout>
         )
-      }
+      },
+      {
+        path: "/login",
+        element: (
+            <AuthLayout authentication={false}>
+                <Login />
+            </AuthLayout>
+        ),
+      },
+      {
+          path: "/signup",
+          element: (
+              <AuthLayout authentication={false}>
+                  <Signup />
+              </AuthLayout>
+          ),
+      },
+      {
+          path: "/all-posts",
+          element: (
+              <AuthLayout authentication>
+                  {" "}
+                  <AllPosts />
+              </AuthLayout>
+          ),
+      },
+      {
+          path: "/add-post",
+          element: (
+              <AuthLayout authentication>
+                  {" "}
+                  <AddPost />
+              </AuthLayout>
+          ),
+      },
+      {
+          path: "/edit-post/:slug",
+          element: (
+              <AuthLayout authentication>
+                  {" "}
+                  <EditPost />
+              </AuthLayout>
+          ),
+      },
+      {
+          path: "/post/:slug",
+          element: <Post />,
+      },
     ]
   }
 ])
@@ -32,7 +79,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </StrictMode>,
 )
