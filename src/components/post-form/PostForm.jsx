@@ -89,6 +89,7 @@ const PostForm = ({post}) => {
                     placeholder="Title"
                     className="mb-4"
                     {...register("title", { required: true })}
+                    readOnly={post}
                 />
                 <Input
                     label="Slug :"
@@ -98,6 +99,7 @@ const PostForm = ({post}) => {
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
+                    readOnly={post}
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
