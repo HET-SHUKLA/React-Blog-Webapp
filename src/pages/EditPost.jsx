@@ -14,22 +14,26 @@ const EditPost = () => {
             appwriteService.getPost(slug)
             .then((post) => {
                 if(post){
-                    setPost(post);
+                    setPost(post);                    
                 }
             });
         }
         else{
             navigate('/');
         }
-    }, slug, navigate);
+    }, [slug, navigate]);
 
-    return post ? (
+    if(post.length === 0){
+        return <div>Loading...</div>;
+    }
+
+    return post.length !== 0 && (
         <div className='py-8'>
             <Container>
                 <PostForm post={post} />
             </Container>
         </div>
-    ) : null
+    );
 }
 
 export default EditPost;

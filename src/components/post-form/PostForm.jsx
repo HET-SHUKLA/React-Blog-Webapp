@@ -6,15 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const PostForm = ({post}) => {
-
+    console.log(`fsjsafsabf sadjf sdahfb sdjf : ${post.$id}`);
+    
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
-            slug: post?.slug || '',
+            slug: post?.$id || '',
             content: post?.content || '',
             status: post?.status || 'active'
         }
     });
+    
 
     const navigate = useNavigate();
 
