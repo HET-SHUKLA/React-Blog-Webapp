@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const PostForm = ({post}) => {
-    console.log(`fsjsafsabf sadjf sdahfb sdjf : ${post.$id}`);
+    //console.log(`fsjsafsabf sadjf sdahfb sdjf : ${post.$id}`);
     
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
